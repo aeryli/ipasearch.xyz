@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search 10,000+ iOS apps across 100+ AltStore & SideStore sources. Find IPAs, emulators, tweaked apps, jailbreak tools. Free, fast, updated daily.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="keywords" content="IPA download, sideload iOS, AltStore sources, SideStore repos, TrollStore, iOS emulator, tweaked apps iOS, jailbreak apps, IPA library, Spotify++ iOS, Delta emulator, PPSSPP iOS, YouTube++ iOS, Instagram Rocket, sideload iPhone, iOS 18 sideload, install IPA iPhone, modded apps iOS">
+  <title>IPA Search | 100+ AltStore & SideStore Sources</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ipasearch.xyz/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ipasearch.xyz/">
+  <meta property="og:title" content="IPA Search | 100+ AltStore & SideStore Sources">
+  <meta property="og:description" content="Search 10,000+ iOS apps across 100+ AltStore & SideStore sources. Find IPAs, emulators, tweaked apps, jailbreak tools. Free, fast, updated daily.">
+  <meta property="og:image" content="https://ipasearch.xyz/og-image.png">
+  <meta property="og:image:alt" content="IPA Search homepage preview">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ipasearch.xyz/">
+  <meta name="twitter:title" content="IPA Search | 100+ AltStore & SideStore Sources">
+  <meta name="twitter:description" content="Search 10,000+ iOS apps across 100+ AltStore & SideStore sources. Find IPAs, emulators, tweaked apps, jailbreak tools.">
+  <meta name="twitter:image" content="https://ipasearch.xyz/og-image.png">
+  <meta name="twitter:image:alt" content="IPA Search homepage preview">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google AdSense: replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23007aff' width='100' height='100' rx='22'/></svg>">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Structured Data (JSON-LD): WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "IPA Search",
+    "url": "https://ipasearch.xyz/",
+    "description": "Search 10,000+ iOS apps across 100+ AltStore & SideStore sources. Find IPAs, emulators, tweaked apps, jailbreak tools.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Suyash Bhawsar"
+    }
+  }
+  </script>
+
+  <!-- Structured Data (JSON-LD): Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "IPA Search",
+    "url": "https://ipasearch.xyz/",
+    "logo": "https://ipasearch.xyz/apple-touch-icon.png",
+    "description": "Search 10,000+ iOS apps across 100+ AltStore & SideStore sources. Find IPAs, emulators, tweaked apps, and jailbreak tools.",
+    "founder": {
+      "@type": "Person",
+      "name": "Suyash Bhawsar"
+    },
+    "sameAs": [
+      "https://blog.ipasearch.xyz",
+      "https://buymeacoffee.com/suyashbhawsar"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data (JSON-LD): FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is IPA sideloading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sideloading is installing apps on iOS devices outside the official App Store using tools like AltStore, SideStore, Sideloadly, or TrollStore. It allows you to install IPA files (iOS app packages) that aren't available on the App Store."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is sideloading apps on iOS safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sideloading from trusted sources is generally safe. IPA Search displays trust badges (Official, Developer, Community) to help you identify reliable repositories. Always download from reputable sources and avoid apps from unknown origins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to jailbreak my iPhone to sideload apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No jailbreak is required for sideloading. Tools like AltStore, SideStore, and Sideloadly work on non-jailbroken devices. You can install up to 3 apps with a free Apple ID, which need to be refreshed every 7 days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between AltStore and SideStore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AltStore requires a computer to refresh apps every 7 days via AltServer. SideStore is a fork that does not require a computer after initial setup. It refreshes apps on-device using a custom VPN configuration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TrollStore and which iOS versions does it support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TrollStore is a permanent IPA installer that does not require resigning. It supports iOS 14.0 to 16.6.1 and iOS 17.0. Apps installed via TrollStore never expire. iOS 17.0.1 and later are not supported because Apple patched the CoreTrust vulnerability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many apps can I sideload with a free Apple ID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With a free Apple ID, you can sideload up to 3 apps at a time, and they expire after 7 days (requiring re-signing). A paid Apple Developer account ($99/year) removes these limits."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <h1>📱 IPA Search</h1>
+        <p class="subtitle">Search across 100+ IPA sources</p>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <a href="/sources.html" class="nav-btn">
+        <span class="nav-icon">📂</span>
+        <span class="nav-text">Repo Explorer</span>
+        <span class="nav-badge">100+ repos</span>
+      </a>
+      <a href="https://blog.ipasearch.xyz" class="nav-btn">
+        <span class="nav-icon">📖</span>
+        <span class="nav-text">Guides</span>
+      </a>
+      <button class="nav-btn nav-btn-secondary" onclick="openSuggestModal()">
+        <span class="nav-icon">➕</span>
+        <span class="nav-text">Suggest Source</span>
+      </button>
+      <a href="https://buymeacoffee.com/suyashbhawsar" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-donate">
+        <span class="nav-icon">☕</span>
+        <span class="nav-text">Donate</span>
+      </a>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for apps, emulators, tweaks..."
+          autocomplete="off"
+          autofocus
+        >
+        <button id="search-btn" class="search-btn">
+          <span class="search-icon">🔍</span>
+          Search
+        </button>
+      </div>
+      <div class="search-hints">
+        <span>Try:</span>
+        <button class="hint-btn" data-query="spotify">Spotify</button>
+        <button class="hint-btn" data-query="youtube">YouTube</button>
+        <button class="hint-btn" data-query="emulator">Emulators</button>
+        <button class="hint-btn" data-query="delta">Delta</button>
+        <button class="hint-btn" data-query="hdflix">HD Flix</button>
+      </div>
+
+      <!-- Trending Searches -->
+      <div id="trending-section" class="trending-section hidden">
+        <div class="trending-header">
+          <span class="trending-label">Trending</span>
+          <div class="trending-tabs">
+            <button class="trending-tab active" data-period="day">Today</button>
+            <button class="trending-tab" data-period="week">This Week</button>
+            <button class="trending-tab" data-period="alltime">All Time</button>
+          </div>
+        </div>
+        <div id="trending-chips" class="trending-chips"></div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-section" id="filters-section">
+        <button class="filters-toggle" id="filters-toggle">Filters</button>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label class="filter-label">Type</label>
+            <select id="filter-type" class="filter-select">
+              <option value="">All Types</option>
+              <option value="tweaked">Tweaked (++)</option>
+              <option value="emulator">Emulators</option>
+              <option value="streaming">Streaming</option>
+              <option value="jailbreak">Jailbreak</option>
+              <option value="social">Social</option>
+              <option value="games">Games</option>
+              <option value="utilities">Utilities</option>
+            </select>
+          </div>
+
+          <div class="filter-group filter-group-trust">
+            <label class="filter-label">Trust</label>
+            <div class="trust-checkboxes">
+              <label class="trust-checkbox"><input type="checkbox" id="trust-official" value="official"><span class="trust-check-label official">Official</span></label>
+              <label class="trust-checkbox"><input type="checkbox" id="trust-developer" value="developer"><span class="trust-check-label developer">Developer</span></label>
+              <label class="trust-checkbox"><input type="checkbox" id="trust-community" value="community"><span class="trust-check-label community">Community</span></label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Size</label>
+            <select id="filter-size" class="filter-select">
+              <option value="">Any</option>
+              <option value="small">&lt; 25 MB</option>
+              <option value="medium">25-100 MB</option>
+              <option value="large">100+ MB</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Updated</label>
+            <select id="filter-date" class="filter-select">
+              <option value="">Any Time</option>
+              <option value="week">Last 7 Days</option>
+              <option value="month">Last 30 Days</option>
+              <option value="quarter">Last 3 Months</option>
+              <option value="year">Last Year</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Sort</label>
+            <select id="filter-sort" class="filter-select">
+              <option value="relevance">Relevance</option>
+              <option value="name">Name (A-Z)</option>
+              <option value="date">Recent First</option>
+              <option value="size-asc">Smallest</option>
+              <option value="size-desc">Largest</option>
+            </select>
+          </div>
+
+          <div class="filter-group filter-group-pal">
+            <label class="filter-label">Store</label>
+            <label class="pal-toggle" title="Show only AltStore PAL apps (EU marketplace)">
+              <input type="checkbox" id="filter-pal">
+              <span class="pal-toggle-label">PAL Only</span>
+            </label>
+          </div>
+
+          <button id="clear-filters" class="clear-filters-btn">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats-section" class="stats-section hidden">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-sources">-</span>
+          <span class="stat-label">Sources</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-apps">-</span>
+          <span class="stat-label">Total Apps</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-matches">-</span>
+          <span class="stat-label">Matches</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-time">-</span>
+          <span class="stat-label">Search Time</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="results-section">
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Searching across all sources...</p>
+      </div>
+
+      <div id="error" class="error hidden">
+        <span class="error-icon">⚠️</span>
+        <p id="error-message">An error occurred</p>
+        <button id="retry-btn" class="retry-btn">Retry</button>
+      </div>
+
+      <div id="welcome" class="welcome">
+        <div class="welcome-icon">🔎</div>
+        <h2>Find Sideloadable Apps</h2>
+        <p>Search emulators, tweaks & utilities across 100+ sources</p>
+        <ul class="feature-list">
+          <li>✓ AltStore & SideStore compatible repos</li>
+          <li>✓ Direct download links</li>
+          <li>✓ Real-time search across all sources</li>
+          <li>✓ Updated automatically</li>
+        </ul>
+      </div>
+
+      <div id="results" class="results-grid hidden"></div>
+
+      <div id="no-results" class="no-results hidden">
+        <span class="no-results-icon">😕</span>
+        <h3>No apps found</h3>
+        <p>Try a different search term or check the spelling</p>
+      </div>
+    </section>
+
+    <!-- Ad Banner (only shown after results, 728x90 Leaderboard) -->
+    <!-- DISABLED: Enable after AdSense approval. See README.md for instructions -->
+    <!--
+    <div id="ad-banner" class="ad-container ad-leaderboard hidden">
+      <div class="ad-placeholder">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <span class="ad-label">Advertisement</span>
+      </div>
+    </div>
+    -->
+
+    <!-- Footer -->
+    <footer>
+      <p>IPA Search &copy; 2026 | Not affiliated with Apple Inc.</p>
+      <p class="disclaimer">This site aggregates public iOS app repositories. We do not host any files.</p>
+    </footer>
+  </div>
+
+  <!-- Sticky Mobile Footer Ad (320x50) -->
+  <!-- DISABLED: Enable after AdSense approval. See README.md for instructions -->
+  <!--
+  <div id="mobile-sticky-ad" class="mobile-sticky-ad hidden">
+    <button class="close-sticky-ad" onclick="closeStickyAd()" aria-label="Close ad">×</button>
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:320px;height:50px"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  -->
+
+  <!-- App Detail Modal -->
+  <div id="app-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <img id="modal-icon" class="modal-icon" src="" alt="App icon">
+        <div class="modal-title-section">
+          <h2 id="modal-name"></h2>
+          <p id="modal-subtitle" class="modal-subtitle"></p>
+          <p id="modal-developer" class="modal-developer"></p>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span id="modal-version" class="modal-meta-item"></span>
+        <span id="modal-date" class="modal-meta-item"></span>
+        <span id="modal-size" class="modal-meta-item"></span>
+      </div>
+      <div id="modal-badges" class="modal-badges"></div>
+      <div class="modal-section">
+        <h3>Description</h3>
+        <p id="modal-description" class="modal-description-truncated"></p>
+        <a id="modal-read-more" href="#" class="modal-read-more hidden" target="_blank" rel="noopener noreferrer">Read more &rarr;</a>
+      </div>
+      <div class="modal-actions">
+        <a id="modal-download" href="#" class="modal-download-btn" target="_blank" rel="noopener noreferrer">Download IPA</a>
+        <button id="modal-copy-source" class="modal-copy-btn">Copy Source URL</button>
+      </div>
+      <a id="modal-view-page" href="#" class="modal-view-page-link" target="_blank" rel="noopener noreferrer">
+        View Full Details <span class="view-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Suggest Source Modal -->
+  <div id="suggest-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeSuggestModal()"></div>
+    <div class="modal-content suggest-modal-content">
+      <button class="modal-close" onclick="closeSuggestModal()" aria-label="Close">&times;</button>
+      <h2 class="suggest-title">Suggest a Source</h2>
+      <p class="suggest-subtitle">Know a repo we're missing? Submit it below!</p>
+
+      <form id="suggest-form" action="/api/suggest" method="POST">
+
+        <div class="form-group">
+          <label for="suggest-url">Repository URL *</label>
+          <input type="url" id="suggest-url" name="repo_url" placeholder="https://example.com/repo.json" required
+                 pattern="https?://.+\..+">
+          <span class="field-hint">Must be a valid URL (e.g., example.com/repo.json)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="suggest-name">Repository Name (optional)</label>
+          <input type="text" id="suggest-name" name="repo_name" placeholder="My Awesome Repo">
+        </div>
+
+        <div class="form-group">
+          <label for="suggest-email">Your Email (optional, for follow-up)</label>
+          <input type="email" id="suggest-email" name="email" placeholder="you@example.com">
+        </div>
+
+        <button type="submit" class="suggest-submit-btn">Submit Suggestion</button>
+      </form>
+
+      <div id="suggest-success" class="suggest-message hidden">
+        <span class="success-icon">✅</span>
+        <p>Thanks! We'll review your suggestion soon.</p>
+      </div>
+
+      <div id="suggest-error" class="suggest-message hidden">
+        <span class="error-icon">❌</span>
+        <p>Something went wrong. Please try again.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Suggest Modal Functions
+    function openSuggestModal() {
+      document.getElementById('suggest-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSuggestModal() {
+      document.getElementById('suggest-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+      // Reset form
+      document.getElementById('suggest-form').reset();
+      document.getElementById('suggest-form').classList.remove('hidden');
+      document.getElementById('suggest-success').classList.add('hidden');
+      document.getElementById('suggest-error').classList.add('hidden');
+    }
+
+    // Auto-prefix https:// to URL field if missing
+    document.getElementById('suggest-url').addEventListener('blur', function() {
+      const val = this.value.trim();
+      if (val && !val.match(/^https?:\/\//i)) {
+        this.value = 'https://' + val;
+      }
+    });
+
+    // Handle form submission with AJAX
+    document.getElementById('suggest-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const urlInput = document.getElementById('suggest-url');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+
+      // Auto-prefix https:// if missing (in case blur didn't fire)
+      const urlVal = urlInput.value.trim();
+      if (urlVal && !urlVal.match(/^https?:\/\//i)) {
+        urlInput.value = 'https://' + urlVal;
+      }
+
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        // Convert FormData to JSON for proper Vercel handling
+        const formData = new FormData(form);
+        const data = {};
+        for (const [key, value] of formData) {
+          data[key] = value;
+        }
+
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          form.classList.add('hidden');
+          document.getElementById('suggest-success').classList.remove('hidden');
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        document.getElementById('suggest-error').classList.remove('hidden');
+      }
+
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    });
+  </script>
+
+  <script src="app.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"49f5c4924f894ab6a2064449a4769128","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
