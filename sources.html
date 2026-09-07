@@ -253,7 +253,7 @@
 
       // Fetch apps
       try {
-        const res = await fetch(`/api/source?url=${encodeURIComponent(url)}`);
+        const res = await fetch(`https://ipasearch.xyz//api/source?url=${encodeURIComponent(url)}`);
         const data = await res.json();
 
         if (!data.success) {
