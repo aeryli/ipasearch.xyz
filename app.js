@@ -1320,8 +1320,14 @@ function openModal(app) {
   badgesEl.innerHTML = badgesHtml;
 
   // Copy source button
+  function ipad() {
+    const iPad = navigator.userAgent.match(/iPad/i) !== null;
+    const iiPad = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  
+    return iPad || iiPad;
+  }
   modalCopyBtn.onclick = () => {
-    copyToClipboard(sourceUrl, modalCopyBtn, true);
+    copyToClipboard(sourceUrl, modalCopyBtn, ipad());
   };
 
   // View full details link (always visible if slug exists)
