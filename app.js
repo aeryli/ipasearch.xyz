@@ -1187,7 +1187,7 @@ async function fetchTrending(period) {
 
     if (data.queries && data.queries.length > 0) {
       trendingChips.innerHTML = data.queries.map(item =>
-        `<button class="trending-chip" data-query="${escapeHtml(item.query)}">${escapeHtml(item.query)}<span class="trending-count">${item.count}</span></button>`
+        `<button class="trending-chip" data-query="${escapeHtml(item.query.replace("porn", "p##n"))}">${escapeHtml(item.query.replace("porn", "p##n"))}<span class="trending-count">${item.count}</span></button>`
       ).join('');
 
       // Add click handlers
