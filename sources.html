@@ -163,7 +163,7 @@
     // Fetch sources
     async function fetchSources() {
       try {
-        const res = await fetch('/api/sources');
+        const res = await fetch('https://ipasearch.xyz/api/sources');
         const data = await res.json();
 
         document.getElementById('stat-total').textContent = data.totalSources;
