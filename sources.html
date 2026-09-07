@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Favicon & Apple Touch Icon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23007aff' width='100' height='100' rx='22'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect fill='%237700ff' width='100' height='100' rx='22'/&gt;&lt;/svg&gt;">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Structured Data (JSON-LD) -->
@@ -207,7 +207,7 @@
                   <span class="repo-count">${parseInt(source.appCount, 10) || 0}</span>
                   ${trustBadge}${palBadge}
                 </div>
-                <p class="repo-url">${escapeHtml(source.url)}</p>
+                <a class="repo-url" href="sidestore://install?url=${escapeHtml(source.url)}">${escapeHtml(source.url)}</a>
               </div>
               <span class="repo-chevron">▶</span>
             </div>
