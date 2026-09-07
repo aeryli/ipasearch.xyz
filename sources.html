@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse 100+ AltStore & SideStore sources. Explore repos, see app counts, check online status. Find the best IPA repositories for iOS sideloading.">
+  <meta name="keywords" content="AltStore sources, SideStore repos, AltStore repos 2025, best AltStore sources, IPA repositories, iOS repo list, sideload sources, TrollStore sources">
+  <title>Repo Explorer: Browse 100+ AltStore & SideStore Sources | IPA Search</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ipasearch.xyz/sources.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ipasearch.xyz/sources.html">
+  <meta property="og:title" content="Repo Explorer: Browse 100+ AltStore & SideStore Sources">
+  <meta property="og:description" content="Browse 100+ AltStore & SideStore sources. Explore repos, see app counts, check online status. Find the best IPA repositories.">
+  <meta property="og:image" content="https://ipasearch.xyz/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ipasearch.xyz/sources.html">
+  <meta name="twitter:title" content="Repo Explorer: Browse 100+ AltStore & SideStore Sources">
+  <meta name="twitter:description" content="Browse 100+ AltStore & SideStore sources. Explore repos, see app counts, check online status.">
+  <meta name="twitter:image" content="https://ipasearch.xyz/og-image.png">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23007aff' width='100' height='100' rx='22'/></svg>">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Repo Explorer | IPA Search",
+    "url": "https://ipasearch.xyz/sources.html",
+    "description": "Browse all 100+ iOS app repository sources. Explore apps in each repo.",
+    "isPartOf": {
+      "@type": "WebApplication",
+      "name": "IPA Search",
+      "url": "https://ipasearch.xyz/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <h1><a href="/" class="header-link">📱 IPA Search</a></h1>
+        <p class="subtitle">Repo Explorer</p>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="sources-stats">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-total">-</span>
+          <span class="stat-label">Repositories</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-online">-</span>
+          <span class="stat-label">Online</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-offline">-</span>
+          <span class="stat-label">Offline</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-apps">-</span>
+          <span class="stat-label">Total Apps</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter -->
+    <section class="sources-filter">
+      <select id="filter-status" class="filter-select">
+        <option value="all">All Repos</option>
+        <option value="online">Online Only</option>
+        <option value="offline">Offline Only</option>
+      </select>
+      <select id="filter-trust" class="filter-select">
+        <option value="all">All Trust Levels</option>
+        <option value="official">Official</option>
+        <option value="developer">Developer</option>
+        <option value="community">Community</option>
+        <option value="unverified">Unverified</option>
+      </select>
+    </section>
+
+    <!-- Sources List -->
+    <section class="sources-section">
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading repositories...</p>
+      </div>
+
+      <div id="sources-list" class="sources-list hidden"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p><a href="/">← Back to Search</a></p>
+      <p class="disclaimer">Click on a repository to explore its apps. Data refreshes every 10 minutes.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Theme handling
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Sanitization helpers
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = String(text);
+      return div.innerHTML;
+    }
+
+    function escapeAttr(text) {
+      return String(text).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function sanitizeUrl(url) {
+      if (!url) return '';
+      const str = String(url).trim();
+      if (str.startsWith('data:image/')) return str;
+      try {
+        const parsed = new URL(str);
+        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') return str;
+      } catch {}
+      return '';
+    }
+
+    // State
+    let allSources = [];
+    const expandedCache = new Map(); // Cache fetched apps
+
+    // Elements
+    const loading = document.getElementById('loading');
+    const sourcesList = document.getElementById('sources-list');
+    const filterStatus = document.getElementById('filter-status');
+    const filterTrust = document.getElementById('filter-trust');
+
+    // Fetch sources
+    async function fetchSources() {
+      try {
+        const res = await fetch('/api/sources');
+        const data = await res.json();
+
+        document.getElementById('stat-total').textContent = data.totalSources;
+        document.getElementById('stat-online').textContent = data.successful;
+        document.getElementById('stat-offline').textContent = data.failed;
+        document.getElementById('stat-apps').textContent = data.totalApps.toLocaleString();
+
+        allSources = data.sources;
+        renderSources(allSources);
+
+        loading.classList.add('hidden');
+        sourcesList.classList.remove('hidden');
+      } catch (err) {
+        loading.innerHTML = '<p class="error-message">Failed to load repositories. Please try again.</p>';
+      }
+    }
+
+    // Render sources
+    function renderSources(sources) {
+      sourcesList.innerHTML = sources.map((source, index) => {
+        const trustBadge = source.trust ?
+          `<span class="trust-badge ${source.trust}">${capitalize(source.trust)}</span>` : '';
+        const palBadge = source.pal ?
+          `<span class="trust-badge trust-pal">PAL</span>` : '';
+        const statusClass = source.success ? 'online' : 'offline';
+        const statusDot = `<span class="status-dot ${statusClass}"></span>`;
+
+        const safeIconUrl = sanitizeUrl(source.iconURL);
+        const iconHtml = safeIconUrl
+          ? `<img src="${escapeAttr(safeIconUrl)}" alt="" onerror="this.parentElement.innerHTML='📦'">`
+          : '📦';
+
+        return `
+          <div class="repo-card ${statusClass}" data-url="${encodeURIComponent(source.url)}" data-index="${index}">
+            <div class="repo-header" onclick="toggleRepo(this.parentElement)">
+              <div class="repo-icon-placeholder">${iconHtml}</div>
+              <div class="repo-info">
+                <div class="repo-title-row">
+                  ${statusDot}
+                  <h3 class="repo-name">${escapeHtml(source.name || 'Unknown')}</h3>
+                  <span class="repo-count">${parseInt(source.appCount, 10) || 0}</span>
+                  ${trustBadge}${palBadge}
+                </div>
+                <p class="repo-url">${escapeHtml(source.url)}</p>
+              </div>
+              <span class="repo-chevron">▶</span>
+            </div>
+            <div class="repo-content hidden">
+              <div class="repo-apps-loading">
+                <div class="spinner-small"></div>
+                <span>Loading apps...</span>
+              </div>
+              <div class="repo-apps hidden"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Toggle repo expansion
+    async function toggleRepo(card) {
+      const content = card.querySelector('.repo-content');
+      const chevron = card.querySelector('.repo-chevron');
+      const appsContainer = card.querySelector('.repo-apps');
+      const appsLoading = card.querySelector('.repo-apps-loading');
+      const url = decodeURIComponent(card.dataset.url);
+
+      // Toggle expanded state
+      const isExpanded = !content.classList.contains('hidden');
+
+      if (isExpanded) {
+        content.classList.add('hidden');
+        chevron.classList.remove('expanded');
+        return;
+      }
+
+      content.classList.remove('hidden');
+      chevron.classList.add('expanded');
+
+      // Check cache
+      if (expandedCache.has(url)) {
+        appsLoading.classList.add('hidden');
+        appsContainer.classList.remove('hidden');
+        appsContainer.innerHTML = expandedCache.get(url);
+        return;
+      }
+
+      // Fetch apps
+      try {
+        const res = await fetch(`/api/source?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+
+        if (!data.success) {
+          throw new Error(data.error || 'Failed to load');
+        }
+
+        const appsHtml = renderApps(data.apps);
+        expandedCache.set(url, appsHtml);
+
+        appsLoading.classList.add('hidden');
+        appsContainer.classList.remove('hidden');
+        appsContainer.innerHTML = appsHtml;
+
+        // Update icon if available
+        if (data.iconURL) {
+          const safeUrl = sanitizeUrl(data.iconURL);
+          if (safeUrl) {
+            const iconEl = card.querySelector('.repo-icon-placeholder');
+            iconEl.innerHTML = `<img src="${escapeAttr(safeUrl)}" alt="" onerror="this.parentElement.innerHTML='📦'">`;
+          }
+        }
+
+      } catch (err) {
+        appsLoading.innerHTML = `<span class="error-message">Failed to load apps: ${escapeHtml(err.message)}</span>`;
+      }
+    }
+
+    // Render apps list
+    function renderApps(apps) {
+      if (!apps || apps.length === 0) {
+        return '<p class="no-apps">No apps found in this repository.</p>';
+      }
+
+      return apps.map(app => {
+        const age = app.versionDate ? getTimeAgo(app.versionDate) : '';
+        const size = app.size ? formatSize(app.size) : '';
+        const desc = app.localizedDescription ?
+          truncate(app.localizedDescription.replace(/\n/g, ' '), 100) : '';
+
+        const appIconUrl = sanitizeUrl(app.iconURL) || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23666%22 width=%2260%22 height=%2260%22 rx=%2212%22/></svg>';
+        const appDownloadUrl = sanitizeUrl(app.downloadURL);
+
+        return `
+          <div class="repo-app-card">
+            <img class="repo-app-icon" src="${escapeAttr(appIconUrl)}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23666%22 width=%2260%22 height=%2260%22 rx=%2212%22/></svg>'">
+            <div class="repo-app-info">
+              <h4 class="repo-app-name">${escapeHtml(app.name)}</h4>
+              <div class="repo-app-meta">
+                ${age ? `<span class="repo-app-age">${escapeHtml(age)}</span>` : ''}
+                ${app.version ? `<span class="repo-app-version">v${escapeHtml(app.version)}</span>` : ''}
+                ${size ? `<span class="repo-app-size">${escapeHtml(size)}</span>` : ''}
+              </div>
+              ${desc ? `<p class="repo-app-desc">${escapeHtml(desc)}</p>` : ''}
+            </div>
+            ${appDownloadUrl ? `<a href="${escapeAttr(appDownloadUrl)}" class="repo-app-download" target="_blank" title="Download" onclick="event.stopPropagation()">⬇️</a>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter sources
+    function applyFilters() {
+      const status = filterStatus.value;
+      const trust = filterTrust.value;
+
+      let filtered = allSources;
+
+      if (status === 'online') {
+        filtered = filtered.filter(s => s.success);
+      } else if (status === 'offline') {
+        filtered = filtered.filter(s => !s.success);
+      }
+
+      if (trust !== 'all') {
+        if (trust === 'unverified') {
+          filtered = filtered.filter(s => !s.trust);
+        } else {
+          filtered = filtered.filter(s => s.trust === trust);
+        }
+      }
+
+      renderSources(filtered);
+    }
+
+    filterStatus.addEventListener('change', applyFilters);
+    filterTrust.addEventListener('change', applyFilters);
+
+    // Helpers
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function truncate(str, len) {
+      return str.length > len ? str.substring(0, len) + '...' : str;
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function getTimeAgo(dateStr) {
+      const date = new Date(dateStr);
+      const now = new Date();
+      const diffMs = now - date;
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      if (diffDays < 0) return 'Future';
+      if (diffDays === 0) return 'Today';
+      if (diffDays === 1) return 'Yesterday';
+      if (diffDays < 7) return diffDays + ' days ago';
+      if (diffDays < 30) return Math.floor(diffDays / 7) + 'w ago';
+      if (diffDays < 365) return Math.floor(diffDays / 30) + 'mo ago';
+
+      const years = Math.floor(diffDays / 365);
+      const remainingDays = diffDays % 365;
+      if (remainingDays > 30) {
+        return `${years}y ${Math.floor(remainingDays / 30)}mo ago`;
+      }
+      return `${years}y ago`;
+    }
+
+    // Init
+    fetchSources();
+  </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"49f5c4924f894ab6a2064449a4769128","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
