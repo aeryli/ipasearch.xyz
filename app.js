@@ -470,7 +470,7 @@ function createAppCard(app) {
       ${bundleId ? `<div class="app-bundle">${bundleId}</div>` : ''}
       <div class="app-source">${sourceName}${trustBadge}${palBadge}</div>
       <div class="app-actions">
-        <a href="${escapeAttr(downloadUrl)}" class="download-btn" target="_blank" rel="noopener noreferrer">Download</a>
+        <a href="sidestore://install?url=${escapeAttr(downloadUrl)}" class="download-btn" target="_blank" rel="noopener noreferrer">Download</a>
         <button class="copy-btn" data-copy-url="${safeSourceUrl}" title="Copy Source URL">Copy Source</button>
       </div>
     </div>
